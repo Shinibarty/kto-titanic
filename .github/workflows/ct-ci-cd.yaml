@@ -20,7 +20,7 @@ on:
 
 env:
   EXPERIMENT_NAME: kto-titanic
-  EXPERIMENT_IMAGE_NAME: quay.io/pierremoussue/titanicexperiment  # ← image de ton camarade
+  EXPERIMENT_IMAGE_NAME: quay.io/pierremoussue/titanicexperiment
   API_IMAGE_NAME: quay.io/kto_gthomas/titanic/api
   API_ROUTE_NAME: titanic-api
   DAILYCLEAN_ROUTE_NAME: dailyclean
@@ -70,7 +70,9 @@ jobs:
           curl -X POST $DAILYCLEAN_ROUTE_URL/pods/start
       - name: Build training image
         run: |
-          docker pull ${{ env.EXPERIMENT_IMAGE_NAME }}:latest  # ← on pull l'image du camarade, plus besoin de build
+          docker pull quay.io/pierremoussue/titanicexperiment:latest
+          docker tag quay.io/pierremoussue/titanicexperiment:latest quay.io/jepsteyn/titanic/experiment:latest
+          docker push quay.io/jepsteyn/titanic/experiment:latest
       - name: Launch mlflow training in Openshift
         run: |
           export KUBE_MLFLOW_TRACKING_URI=$MLFLOW_TRACKING_ROUTE_URL
