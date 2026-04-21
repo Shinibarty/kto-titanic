@@ -11,7 +11,7 @@ def get_last_model_uri(experiment_name: str) -> str:
     experiment_id = current_experiment['experiment_id']
     runs: list[Run] = mlflow.search_runs(
         [experiment_id],
-        filter_string="attributes.status = 'FINISHED'",
+        filter_string="attributes.status = 'FINISHED' and tags.mlflow.source.name LIKE '%training%'",
         max_results=1,
         order_by=["attributes.end_time DESC"],
         output_format="list"
