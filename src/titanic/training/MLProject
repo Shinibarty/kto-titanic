@@ -1,7 +1,7 @@
 name: kto-titanic
 
 docker_env:
-  image: image: quay.io/pierremoussue/titanicexperiment
+  image: quay.io/pierremoussue/titanicexperiment
   
 entry_points:
 
