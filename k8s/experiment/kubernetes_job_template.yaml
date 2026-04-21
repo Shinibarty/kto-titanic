@@ -4,7 +4,7 @@ metadata:
   name: "{replaced with MLflow Project name}"
   namespace: jepsteyn-dev
 spec:
-  ttlSecondsAfterFinished: 100
+  ttlSecondsAfterFinished: 600
   backoffLimit: 0
   template:
     spec:
